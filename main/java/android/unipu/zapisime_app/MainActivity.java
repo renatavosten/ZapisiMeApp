@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements DialogCloseListener{
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private DatabaseHandler db;
     private FloatingActionButton fab;
 
-    // varijabla akoja će pohraniti sve unesene zadatke
+    // varijabla koja će pohraniti sve unesene bilješke
     private List<ToDoModel> taskList;
 
     @Override
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         setContentView(R.layout.activity_main);
 
         // sakrivanje ActionBar-a
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         // definiranje baze podataka
         db = new DatabaseHandler(this);
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         // postavljanje RecyclerView-a kao LinearLayout-a
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         // postavljanje Adaptera na RecyclerView
-        tasksAdapter = new ToDoAdapter(db, this);
+        tasksAdapter = new ToDoAdapter(db, MainActivity.this);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         fab = findViewById(R.id.fab);
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
-        taskList = db.getAllTasks(); // dohvat svih zadataka iz baze
+        taskList = db.getAllTasks(); // dohvat svih bilješki iz baze
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     public void handleDialogClose(DialogInterface dialog) {
         taskList = db.getAllTasks();
-        Collections.reverse(taskList); // zadnje dodani zadatak će biti na prvom mjestu u listi
+        Collections.reverse(taskList); // zadnje dodana bilješka će biti na prvom mjestu u listi
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
     }

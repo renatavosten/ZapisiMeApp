@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="New Task" />
+        android:hint="Nova bilješka" />
 
     <Button
         android:id="@+id/newTaskButton"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/newTaskText"
         android:layout_alignParentEnd="true"
-        android:text="Save"
+        android:text="Spremi"
         android:textAllCaps="false"
         android:background="@android:color/transparent"
         android:textColor="@android:color/holo_purple"

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     // definiranje ViewHolder funkcije
+    @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.task_layout, parent, false);
@@ -37,9 +40,10 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     // definiranje OnBind funkcije
-    public void onBindViewHolder(ViewHolder holder, int position){
+    @Override
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position){
         db.openDatabase();
-        ToDoModel item = todoList.get(position); // traženje pozicije neke određene bilješke s liste
+        final ToDoModel item = todoList.get(position); // traženje pozicije neke određene bilješke s liste
         holder.task.setText(item.getTask());
         holder.task.setChecked(toBoolean(item.getStatus()));
         // svaki put kad korisnik označi bilješku to se treba poslati u bazu
@@ -57,6 +61,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         });
     }
 
+    @Override
     public int getItemCount(){
         return todoList.size();
     }
@@ -98,7 +103,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
         ViewHolder(View view){
             super(view);
-            task= view.findViewById(R.id.todoChekBox);
+            task = view.findViewById(R.id.todoChekBox);
         }
     }
 }

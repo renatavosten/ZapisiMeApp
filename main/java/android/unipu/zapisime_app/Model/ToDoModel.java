@@ -1,7 +1,7 @@
 package android.unipu.zapisime_app.Model;
 
 public class ToDoModel {
-    // definiranje varijabli - svaki zadatak(task) će imati svoj id za dohvaćanje iz baze i status
+    // definiranje varijabli - svaka bilješka će imati svoj id za dohvaćanje iz baze i status
     private int id, status;
     private String task;
 

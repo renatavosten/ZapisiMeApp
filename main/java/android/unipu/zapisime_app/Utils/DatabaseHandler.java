@@ -93,7 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
-    // funkcija za ažuriranje naslova bilješke
+    // funkcija za ažuriranje bilješke
     public void updateTask(int id, String task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);

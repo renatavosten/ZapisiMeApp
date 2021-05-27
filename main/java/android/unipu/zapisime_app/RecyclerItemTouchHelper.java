@@ -57,7 +57,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             dialog.show();
         }
         else {
-            // ak se swipe-a udesno onda se uređuje bilješka
+            // ako se swipe-a udesno onda se uređuje bilješka
             adapter.editItem(position);
         }
     }

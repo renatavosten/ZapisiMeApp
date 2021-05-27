@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         // sakrivanje ActionBar-a
         getSupportActionBar().hide();
 
-        // Main aktivnost mora započeti 2000 ms nakon početnog prikazivanja ekrana iz Splash aktivnosti
+        // Main aktivnost će započeti 2000 ms nakon početnog prikazivanja ekrana iz Splash aktivnosti
         final Intent i = new Intent(SplashActivity.this, MainActivity.class);
         new Handler().postDelayed(new Runnable() {
             @Override
